@@ -1,4 +1,5 @@
 import os
+import sys
 from funcoes import verificarChute, correto, incorreto, competidorVencedor, desafianteVencedor, lerArquivo, limparTela, criarArquivo
 from desenhos import desenhoForca, mensagemPerdedor, mensagemVencedor
 
@@ -17,17 +18,17 @@ while True:
     print('(2) Histórico de Partidas')
     print('(3) Sair\n')
     while True:
-        try:
-            opInicio = int(input('Digite como deseja prosseguir: '))
-            if opInicio == 1:
-                limparTela()
-                break
-            elif opInicio == 2:
-                lerArquivo()
-            elif opInicio == 3:
-                quit()
-        except:
-            print('Opção Inválida')
+        opInicio = input('Digite como deseja prosseguir: ')
+        if opInicio == "1":
+            limparTela()
+            break
+        elif opInicio == "2":
+            lerArquivo()
+        elif opInicio == "3":
+            quit()
+        else:
+            print('Opção Inválida!')
+    
 
     desafiante = input('Digite o nome do Desafiante: ')
     competidor = input('Digite o nome do Competidor: ')
@@ -65,7 +66,7 @@ while True:
 
             while True:
                 mensagem = 'Letras Chutadas:'
-                print(mensagem, letrasChutadas, '\n')
+                print(mensagem, ''.join(letrasChutadas), '\n')
                 letra = input('Digite a letra ou a palavra que deseja chutar (sem os acentos): ')
                 if len(letra) == 1 and letra not in letrasPossiveis:
                     print('Caractere inválido!')

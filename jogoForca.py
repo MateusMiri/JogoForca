@@ -1,6 +1,6 @@
 import os
 import sys
-from funcoes import verificarChute, correto, incorreto, competidorVencedor, desafianteVencedor, lerArquivo, limparTela, criarArquivo
+from funcoes import verificarChute, correto, incorreto, competidorVencedor, desafianteVencedor, lerArquivo, limparTela, criarArquivo, exibirLetrasChutadas
 from desenhos import desenhoForca, mensagemPerdedor, mensagemVencedor
 
 while True:
@@ -10,13 +10,14 @@ while True:
     erros = 0
     dicasRestantes = 3
     letrasJogadas = []
-    letrasPossiveis = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    letrasPossiveis = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     letrasChutadas = []
 
     print('Bem vindo ao Jogo da Forca!!!\n')
     print('(1) Novo Jogo')
     print('(2) Histórico de Partidas')
     print('(3) Sair\n')
+    
     while True:
         opInicio = input('Digite como deseja prosseguir: ')
         if opInicio == "1":
@@ -29,15 +30,24 @@ while True:
         else:
             print('Opção Inválida!')
     
-
-    desafiante = input('Digite o nome do Desafiante: ')
-    competidor = input('Digite o nome do Competidor: ')
+    desafiante = input('Digite o nome do Desafiante: ').capitalize()
+    competidor = input('Digite o nome do Competidor: ').capitalize()
     limparTela()
 
-    palavraChave = str(input('Digite a Palavra Chave do jogo: '))
+    while True:
+        verifPalavra = True
+        palavraChave = str(input('Digite a Palavra Chave do jogo: ').upper())
+        for i in palavraChave:
+            if i not in letrasPossiveis:
+                verifPalavra = False
+        if verifPalavra == False:
+            print('A palavra possui Caracteres Inválidos!')
+            input('Pressione Enter para Continuar...')
+        elif verifPalavra:
+            break           
+                
     chuteInicial = '_ ' * len(palavraChave)
     limparTela()
-
 
     dicas = []
     dicas.append(input('Digite a primeira dica: '))
@@ -51,8 +61,7 @@ while True:
         print('Palavra: {}' .format(chuteInicial.upper()))
         print('Você possui {} dicas restantes!' .format(dicasRestantes))
         print('\n(1) Jogar')
-        print('(2) Solicitar Dica')
-        print('(3) Histórico de Partidas\n')
+        print('(2) Solicitar Dica\n')
         while True:
             try:
                 op = int(input('Digite como deseja prosseguir: '))
@@ -63,18 +72,15 @@ while True:
             limparTela()
         
         if op == 1:
-
             while True:
-                mensagem = 'Letras Chutadas:'
-                print(mensagem, ''.join(letrasChutadas), '\n')
-                letra = input('Digite a letra ou a palavra que deseja chutar (sem os acentos): ')
+                exibirLetrasChutadas(letrasChutadas)
+                letra = input('\nDigite a letra ou a palavra que deseja chutar (sem os acentos): ').upper().strip()
                 if len(letra) == 1 and letra not in letrasPossiveis:
                     print('Caractere inválido!')
                 elif letra in letrasChutadas:
                     print('Você já chutou essa letra!')
                 else:   
                     break
-            
                 
             if len(letra) > 1:
                 if letra == palavraChave:
@@ -97,17 +103,16 @@ while True:
                     input('Pressione Enter para Continuar...')
                     limparTela()
 
-        if op == 2:
+        elif op == 2:
             if dicasRestantes > 0:
-                print('Sua dica é:', dicas[-(dicasRestantes)])
+                print('\nSua dica é:', dicas[-(dicasRestantes)])
                 dicasRestantes -= 1
             else:
-                print('Você não possui mais dicas restantes!')
+                print('\nVocê não possui mais dicas restantes!\n')
 
             while True:
-                mensagem = 'Letras Chutadas:'
-                print(mensagem, letrasChutadas, '\n')
-                letra = input('Digite a letra ou a palavra que deseja chutar (sem os acentos): ')
+                exibirLetrasChutadas(letrasChutadas)
+                letra = input('Digite a letra ou a palavra que deseja chutar (sem os acentos): ').upper().strip()
                 if len(letra) == 1 and letra not in letrasPossiveis:
                     print('Caractere inválido!')
                 elif letra in letrasChutadas:
@@ -136,10 +141,7 @@ while True:
                     input('Pressione Enter para Continuar...')
                     limparTela()
 
-        elif op == 3:
-            lerArquivo()
-
-        elif op != 1 and op != 2 and op != 3:
+        else:
             print('Opção Inválida!')
             input('Pressione Enter para Continuar...')
             limparTela()

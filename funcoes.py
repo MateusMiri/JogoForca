@@ -35,11 +35,13 @@ def criarArquivo():
 
 def competidorVencedor(desafiante, competidor, palavraChave):
     print('{} ganhou!!!' .format(competidor))
-    print('{} perdeu!!!' .format(desafiante))
+    print('{} perdeu!!!\n' .format(desafiante))
     arquivo = open("historico.txt","a")
+    arquivo.write('---' * 7 + '\n')
     arquivo.write('Palavra Chave: {}\n' .format(palavraChave))
     arquivo.write('Vencedor: Competidor {}\n' .format(competidor))
     arquivo.write('Perdedor: Desafiante {}\n' .format(desafiante))
+    arquivo.write('---' * 7 + '\n')
     arquivo.close()
     input('Pressione ENTER para continuar...')
     limparTela()
@@ -48,9 +50,11 @@ def desafianteVencedor(desafiante, competidor, palavraChave):
     print('{} ganhou!!!' .format(desafiante))
     print('{} perdeu!!!\n' .format(competidor))   
     arquivo = open("historico.txt","a")
+    arquivo.write('---' * 7 + '\n')
     arquivo.write('Palavra Chave: {}\n' .format(palavraChave))
     arquivo.write('Vencedor: Desafiante {}\n' .format(desafiante))
     arquivo.write('Perdedor: Competidor {}\n' .format(competidor))
+    arquivo.write('---' * 7 + '\n')
     arquivo.close()
     input('Pressione ENTER para continuar...')
     limparTela()
@@ -63,4 +67,9 @@ def lerArquivo():
         print(conteudo)
     except:
         print('Não há histórico de Partidas Disponível!')
+
+def exibirLetrasChutadas(letrasChutadas):
+    if len(letrasChutadas) > 0:
+        mensagem = 'Letras Chutadas:'
+        print(mensagem, ''.join(letrasChutadas), '\n')
 

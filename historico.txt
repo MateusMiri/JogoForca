@@ -1,9 +1,0 @@
-Palavra Chave: risao
-Vencedor: Competidor asd
-Perdedor: Desafiante ber
-Palavra Chave: palito
-Vencedor: Competidor mat
-Perdedor: Desafiante mas
-Palavra Chave: abc
-Vencedor: Competidor mas
-Perdedor: Desafiante mat

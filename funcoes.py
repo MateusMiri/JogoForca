@@ -72,4 +72,3 @@ def exibirLetrasChutadas(letrasChutadas):
     if len(letrasChutadas) > 0:
         mensagem = 'Letras Chutadas:'
         print(mensagem, ''.join(letrasChutadas), '\n')
-

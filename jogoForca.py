@@ -1,5 +1,4 @@
 import os
-import sys
 from funcoes import verificarChute, correto, incorreto, competidorVencedor, desafianteVencedor, lerArquivo, limparTela, criarArquivo, exibirLetrasChutadas
 from desenhos import desenhoForca, mensagemPerdedor, mensagemVencedor
 

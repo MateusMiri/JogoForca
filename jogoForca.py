@@ -13,12 +13,13 @@ while True:
     letrasChutadas = []
 
     print('Bem vindo ao Jogo da Forca!!!\n')
-    print('(1) Novo Jogo')
-    print('(2) Histórico de Partidas')
-    print('(3) Sair\n')
     
     while True:
-        opInicio = input('Digite como deseja prosseguir: ')
+  
+        print('(1) Novo Jogo')
+        print('(2) Histórico de Partidas')
+        print('(3) Sair')
+        opInicio = input('\nDigite como deseja prosseguir: ')
         if opInicio == "1":
             limparTela()
             break
@@ -89,6 +90,8 @@ while True:
                     print('A palavra não está correta!')
                     erros += 1
                     desenhoForca(erros)
+                    input('Pressione Enter para Continuar...')
+                    limparTela()
             else:
                 letrasChutadas.append(letra)
                 condicaoAcerto, chuteInicial = verificarChute(palavraChave, letra, letrasChutadas)
@@ -96,11 +99,9 @@ while True:
                 if condicaoAcerto:
                     correto(chuteInicial)  
                 else:
-                    incorreto(chuteInicial)
                     erros += 1
-                    desenhoForca(erros)
-                    input('Pressione Enter para Continuar...')
-                    limparTela()
+                    incorreto(chuteInicial, erros)
+                    
 
         elif op == 2:
             if dicasRestantes > 0:
@@ -134,7 +135,7 @@ while True:
                 if condicaoAcerto:
                     correto(chuteInicial)  
                 else:
-                    incorreto(chuteInicial)
+                    incorreto(chuteInicial, erros)
                     erros += 1
                     desenhoForca(erros)
                     input('Pressione Enter para Continuar...')

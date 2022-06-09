@@ -19,15 +19,19 @@ def verificarChute(palavraChave, letra, letrasChutadas):
 
 def correto(chuteInicial):
     limparTela()
-    print('Esta letra está presente na Palavra!')
+    print('Esta letra está presente na Palavra!\n')
     print('Palavra: {}' .format(chuteInicial.upper()))
     input('Pressione Enter para Continuar...')
     limparTela()
 
-def incorreto(chuteInicial):
+def incorreto(chuteInicial, erros):
     limparTela()
-    print('Esta letra não está presente na Palavra!')
-    print('Palavra:' .format(chuteInicial.upper()))
+    print('Esta letra não está presente na Palavra!\n')
+    print('Palavra: {}' .format(chuteInicial.upper()))
+    desenhoForca(erros)
+    input('Pressione Enter para Continuar...')
+    limparTela()
+
 
 def criarArquivo():
     arquivo = open("historico.txt","w")
@@ -66,7 +70,9 @@ def lerArquivo():
         arquivo.close()
         print(conteudo)
     except:
-        print('Não há histórico de Partidas Disponível!')
+        print('\nNão há histórico de Partidas Disponível!\n')
+        input('Pressione ENTER para continuar...')
+        limparTela()
 
 def exibirLetrasChutadas(letrasChutadas):
     if len(letrasChutadas) > 0:

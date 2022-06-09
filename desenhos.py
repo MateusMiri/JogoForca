@@ -56,7 +56,6 @@ def desenhoForca(erros):
 
     
 def mensagemVencedor():
-    print("Parabéns, você ganhou!")
     print("       ___________      ")
     print("      '._==_==_=_.'     ")
     print("      .-\\:      /-.    ")
@@ -70,8 +69,7 @@ def mensagemVencedor():
     print('')
 
 def mensagemPerdedor(palavraChave):
-    print("Puxa, você foi enforcado!")
-    print("A palavra era {}".format(palavraChave.upper()))
+    print('')
     print("    _______________         ")
     print("   /               \       ")
     print("  /                 \      ")
@@ -88,5 +86,6 @@ def mensagemPerdedor(palavraChave):
     print("   \_             _/       ")
     print("     \_         _/         ")
     print("       \_______/           ")
+    print("A palavra era {}".format(palavraChave.upper()))
     print('')
 
